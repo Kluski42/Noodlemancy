@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "noodlemancy",
+	"version": "${version}",
+	"name": "Noodlemancy",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/noodlemancy/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.wetnoodle.noodlemancy.Noodlemancy"
+		],
+		"client": [
+			"net.wetnoodle.noodlemancy.NoodlemancyClient"
+		],
+		"fabric-datagen": [
+			"net.wetnoodle.noodlemancy.NoodlemancyDataGenerator"
+		]
+	},
+	"mixins": [
+		"noodlemancy.mixins.json",
+		{
+			"config": "noodlemancy.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
