@@ -5,7 +5,7 @@
   "name": "Noodlemancy",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "Wet Noodle"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -22,7 +22,7 @@
       "net.wetnoodle.noodlemancy.NoodlemancyClient"
     ],
     "fabric-datagen": [
-      "net.wetnoodle.noodlemancy.NoodlemancyDataGenerator"
+      "net.wetnoodle.noodlemancy.datagen.NoodlemancyDataGenerator"
     ]
   },
   "mixins": [

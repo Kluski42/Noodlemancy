@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "noodlemancy:block/creaking_eye_top",
+    "side": "noodlemancy:block/creaking_eye"
+  }
+}
