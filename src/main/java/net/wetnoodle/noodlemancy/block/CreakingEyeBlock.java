@@ -26,17 +26,18 @@ public class CreakingEyeBlock extends BaseEntityBlock {
             color -> color.group(propertiesCodec()).apply(color, CreakingEyeBlock::new)
     );
     public static final IntegerProperty POWER = BlockStateProperties.POWER;
+    public static final IntegerProperty EYES = IntegerProperty.create("eyes", 0, 3);
 
     // Block states and init
 
     public CreakingEyeBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(POWER, 0));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(POWER, 0).setValue(EYES, 0));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
-        builder.add(POWER);
+        builder.add(POWER).add(EYES);
     }
 
     @Override
@@ -54,6 +55,8 @@ public class CreakingEyeBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
+    
+
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
@@ -61,7 +64,6 @@ public class CreakingEyeBlock extends BaseEntityBlock {
     }
 
     // Fun stuff
-
 
 
     @Override

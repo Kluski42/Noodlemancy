@@ -1,27 +1,28 @@
 package net.wetnoodle.noodlemancy.block.entity;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.wetnoodle.noodlemancy.registry.NMBlockEntityTypes;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static net.wetnoodle.noodlemancy.block.CreakingEyeBlock.EYES;
 import static net.wetnoodle.noodlemancy.block.CreakingEyeBlock.POWER;
 
 public class CreakingEyeBlockEntity extends BlockEntity {
     public static final int RANGE = 32;
     public static final int RANGE_SQ = RANGE * RANGE;
     public static final double DETECTION_RANGE = 60.0 * Math.PI / 180.0;
-    public static final double DOT_RANGE = Math.acos(DETECTION_RANGE);
 
     public CreakingEyeBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(NMBlockEntityTypes.CREAKING_EYE, blockPos, blockState);
@@ -31,22 +32,9 @@ public class CreakingEyeBlockEntity extends BlockEntity {
         calculatePower(level, blockPos, blockState);
     }
 
-    private static List<Player> getPlayersInRange(Level level, BlockPos blockPos) {
-        // the creaking mob remembers what players were nearby
-        List<? extends Player> players = level.players();
-        List<Player> output = new ArrayList<>();
-        for (Player player : players) {
-            double dist = player.getEyePosition().distanceToSqr(blockPos.getCenter());
-            if (dist <= RANGE) {
-                output.add(player);
-            }
-        }
-        return output;
-    }
-
-    private static void updatePower(@Nullable Entity entity, Level level, BlockPos blockPos, BlockState blockState, int newPower) {
+    private static void updatePower(Level level, BlockPos blockPos, BlockState blockState, int newPower) {
         if (blockState.getValue(POWER) != newPower) {
-            level.setBlock(blockPos, blockState.setValue(POWER, newPower), Block.UPDATE_ALL);
+            level.setBlock(blockPos, blockState.setValue(POWER, newPower).setValue(EYES, (int) Math.ceil(newPower / 5.0)), Block.UPDATE_ALL);
         }
     }
 
@@ -56,10 +44,15 @@ public class CreakingEyeBlockEntity extends BlockEntity {
         // the creaking mob remembers what players were nearby
         List<? extends Player> players = level.players();
         for (Player player : players) {
-            double dist = player.getEyePosition().distanceToSqr(blockPos.getCenter());
-            if (dist <= RANGE_SQ) {
-                double dot = getAccuracy(player, level, blockPos, blockState, dist);
-                if (dot > closetDot) {
+            if (!LivingEntity.PLAYER_NOT_WEARING_DISGUISE_ITEM.test(player)) {
+                continue;
+            }
+            double distance = player.getEyePosition().distanceToSqr(blockPos.getCenter());
+            if (distance <= RANGE_SQ) {
+                Vec3 viewVector = player.getViewVector(1.0F).normalize();
+                Vec3 relativeEntityPos = blockPos.getCenter().subtract(player.getEyePosition()).normalize();
+                double dot = viewVector.dot(relativeEntityPos);
+                if ((dot > closetDot) && (isVisible(level, player, blockPos, distance))) {
                     closetDot = dot;
                     mostAccuratePlayer = player;
                 }
@@ -71,18 +64,18 @@ public class CreakingEyeBlockEntity extends BlockEntity {
         if (angle <= DETECTION_RANGE) {
             power = (int) Math.ceil((1 - (angle / DETECTION_RANGE)) * 15);
         }
-        updatePower(mostAccuratePlayer, level, blockPos, blockState, power);
+        updatePower(level, blockPos, blockState, power);
     }
 
-    private static double getAccuracy(LivingEntity entity, Level level, BlockPos blockPos, BlockState blockState, double distance) {
-        Vec3 viewVector = entity.getViewVector(1.0F).normalize();
-        Vec3 relativeEntityPos = blockPos.getCenter().subtract(entity.getEyePosition()).normalize();
-        double dot = viewVector.dot(relativeEntityPos);
-        return dot;
-//        double reqDot = 1 - 0.5 / distance;
-//        if (dot > reqDot) {
-//            return dot;
-//        }
-//        return 0;
+    private static boolean isVisible(Level level, Player player, BlockPos blockPos, double distance) {
+        Vec3 eyePos = player.getEyePosition();
+        Vec3 creakingPos = blockPos.getCenter();
+        Vec3[] offsets = new Vec3[]{Vec3.ZERO, Direction.UP.getUnitVec3().multiply(1, 0.5, 1), Direction.DOWN.getUnitVec3().multiply(1, 0.5, 1)};
+        for (Vec3 offset : offsets) {
+            BlockHitResult hitResult = level.clip(new ClipContext(eyePos, creakingPos.add(offset), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty()));
+            if (hitResult.getBlockPos().equals(blockPos)) return true;
+        }
+        return false;
     }
 }
+
