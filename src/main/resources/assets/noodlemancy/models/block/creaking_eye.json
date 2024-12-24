@@ -1,7 +1,9 @@
 {
-  "parent": "minecraft:block/cube_column",
+  "parent": "noodlemancy:block/observeresque_emissive",
   "textures": {
-    "end": "noodlemancy:block/creaking_eye_top",
-    "side": "noodlemancy:block/creaking_eye"
+    "front": "noodlemancy:block/creaking_eye_face",
+    "front_emissive": "noodlemancy:block/air",
+    "bottom": "noodlemancy:block/creaking_eye_back",
+    "side": "noodlemancy:block/creaking_eye_side"
   }
 }

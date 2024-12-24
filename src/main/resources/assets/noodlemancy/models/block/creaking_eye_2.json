@@ -1,9 +1,9 @@
 {
-  "parent": "noodlemancy:block/cube_column_emissive",
+  "parent": "noodlemancy:block/observeresque_emissive",
   "textures": {
-    "end": "noodlemancy:block/creaking_eye_top",
-    "side": "noodlemancy:block/creaking_eye",
-    "side_emissive": "noodlemancy:block/creaking_eye_emissive_2",
-    "end_emissive": "noodlemancy:block/air"
+    "front": "noodlemancy:block/creaking_eye_face",
+    "front_emissive": "noodlemancy:block/creaking_eye_emissive_2",
+    "bottom": "noodlemancy:block/creaking_eye_back_on",
+    "side": "noodlemancy:block/creaking_eye_side"
   }
 }

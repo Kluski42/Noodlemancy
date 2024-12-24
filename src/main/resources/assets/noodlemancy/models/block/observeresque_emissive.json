@@ -1,0 +1,18 @@
+{
+  "parent": "noodlemancy:block/cube_emissive",
+  "textures": {
+    "particle": "#side",
+    "down": "#side",
+    "up": "#side",
+    "north": "#front",
+    "east": "#side",
+    "south": "#bottom",
+    "west": "#side",
+    "down_emissive": "noodlemancy:block/air",
+    "up_emissive": "noodlemancy:block/air",
+    "north_emissive": "#front_emissive",
+    "east_emissive": "noodlemancy:block/air",
+    "south_emissive": "noodlemancy:block/air",
+    "west_emissive": "noodlemancy:block/air"
+  }
+}
