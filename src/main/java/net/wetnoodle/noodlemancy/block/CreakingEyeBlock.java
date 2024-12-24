@@ -55,8 +55,6 @@ public class CreakingEyeBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
-    
-
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
@@ -64,7 +62,6 @@ public class CreakingEyeBlock extends BaseEntityBlock {
     }
 
     // Fun stuff
-
 
     @Override
     protected int getSignal(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Direction direction) {

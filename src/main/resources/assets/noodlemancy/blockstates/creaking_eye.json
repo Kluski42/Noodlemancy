@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
+    "eyes=0": {
       "model": "noodlemancy:block/creaking_eye"
+    },"eyes=1": {
+      "model": "noodlemancy:block/creaking_eye_1"
+    },"eyes=2": {
+      "model": "noodlemancy:block/creaking_eye_2"
+    },"eyes=3": {
+      "model": "noodlemancy:block/creaking_eye_3"
     }
   }
 }

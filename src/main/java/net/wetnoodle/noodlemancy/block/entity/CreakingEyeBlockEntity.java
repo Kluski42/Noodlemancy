@@ -44,7 +44,7 @@ public class CreakingEyeBlockEntity extends BlockEntity {
         // the creaking mob remembers what players were nearby
         List<? extends Player> players = level.players();
         for (Player player : players) {
-            if (!LivingEntity.PLAYER_NOT_WEARING_DISGUISE_ITEM.test(player)) {
+            if (!LivingEntity.PLAYER_NOT_WEARING_DISGUISE_ITEM.test(player) || player.isSpectator()) {
                 continue;
             }
             double distance = player.getEyePosition().distanceToSqr(blockPos.getCenter());
