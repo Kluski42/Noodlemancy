@@ -1,0 +1,9 @@
+{
+  "parent": "noodlemancy:block/observeresque_emissive_horizontal",
+  "textures": {
+    "front": "noodlemancy:block/creaking_eye_face",
+    "front_emissive": "noodlemancy:block/creaking_eye_emissive_1",
+    "bottom": "noodlemancy:block/creaking_eye_back_on",
+    "side": "noodlemancy:block/creaking_eye_side"
+  }
+}
