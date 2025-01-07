@@ -1,5 +1,27 @@
 {
-  "parent": "noodlemancy:block/cube_emissive",
+  "parent": "block/block",
+  "elements": [
+    {
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "down":  { "texture": "#down", "rotation": 90, "cullface": "down" },
+        "up":    { "texture": "#up", "rotation": 270, "cullface": "up" },
+        "north": { "texture": "#north", "cullface": "north" },
+        "south": { "texture": "#south", "cullface": "south" },
+        "west":  { "texture": "#west",  "rotation": 180, "cullface": "west" },
+        "east":  { "texture": "#east", "rotation": 0, "cullface": "east" }
+      }
+    },
+    {
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "light_emission": 15,
+      "faces": {
+        "north": { "texture": "#north_emissive", "cullface": "north" }
+      }
+    }
+  ],
   "textures": {
     "particle": "#side",
     "down": "#side",
@@ -8,11 +30,6 @@
     "east": "#side",
     "south": "#bottom",
     "west": "#side",
-    "down_emissive": "noodlemancy:block/air",
-    "up_emissive": "noodlemancy:block/air",
-    "north_emissive": "#front_emissive",
-    "east_emissive": "noodlemancy:block/air",
-    "south_emissive": "noodlemancy:block/air",
-    "west_emissive": "noodlemancy:block/air"
+    "north_emissive": "#front_emissive"
   }
 }

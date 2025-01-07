@@ -53,30 +53,30 @@
     },
 
     "facing=up,eyes=0": {
-      "model": "noodlemancy:block/creaking_eye_horizontal",
+      "model": "noodlemancy:block/creaking_eye",
       "x": 270
     },"facing=up,eyes=1": {
-      "model": "noodlemancy:block/creaking_eye_1_horizontal",
+      "model": "noodlemancy:block/creaking_eye_1",
       "x": 270
     },"facing=up,eyes=2": {
-      "model": "noodlemancy:block/creaking_eye_2_horizontal",
+      "model": "noodlemancy:block/creaking_eye_2",
       "x": 270
     },"facing=up,eyes=3": {
-      "model": "noodlemancy:block/creaking_eye_3_horizontal",
+      "model": "noodlemancy:block/creaking_eye_3",
       "x": 270
     },
 
     "facing=down,eyes=0": {
-      "model": "noodlemancy:block/creaking_eye_horizontal",
+      "model": "noodlemancy:block/creaking_eye",
       "x": 90
     },"facing=down,eyes=1": {
-      "model": "noodlemancy:block/creaking_eye_1_horizontal",
+      "model": "noodlemancy:block/creaking_eye_1",
       "x": 90
     },"facing=down,eyes=2": {
-      "model": "noodlemancy:block/creaking_eye_2_horizontal",
+      "model": "noodlemancy:block/creaking_eye_2",
       "x": 90
     },"facing=down,eyes=3": {
-      "model": "noodlemancy:block/creaking_eye_3_horizontal",
+      "model": "noodlemancy:block/creaking_eye_3",
       "x": 90
     }
   }
