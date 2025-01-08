@@ -12,7 +12,6 @@ public final class NMModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockModelGenerators) {
-//        blockModelGenerators.createTrivialBlock(NMBlocks.CREAKING_EYE, TexturedModel.COLUMN_WITH_WALL);
     }
 
     @Override
