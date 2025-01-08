@@ -8,7 +8,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.wetnoodle.noodlemancy.NMConstants;
 import net.wetnoodle.noodlemancy.block.CreakingEyeBlock;
 
@@ -18,7 +21,13 @@ public class NMBlocks {
     public static final Block CREAKING_EYE = register(
             "creaking_eye",
             CreakingEyeBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.CREAKING_HEART)
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.STONE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(3.0F)
+                    .requiresCorrectToolForDrops()
+                    .isRedstoneConductor(Blocks::never)
+                    .sound(SoundType.CREAKING_HEART)
     );
 
     public static void init() {

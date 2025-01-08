@@ -3,6 +3,7 @@ package net.wetnoodle.noodlemancy.datagen.loot;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.core.HolderLookup;
+import net.wetnoodle.noodlemancy.registry.NMBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -13,6 +14,6 @@ public class NMBlockLootProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-
+        this.dropSelf(NMBlocks.CREAKING_EYE);
     }
 }
