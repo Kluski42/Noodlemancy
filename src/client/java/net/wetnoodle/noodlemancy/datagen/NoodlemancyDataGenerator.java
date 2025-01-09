@@ -3,6 +3,7 @@ package net.wetnoodle.noodlemancy.datagen;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.wetnoodle.noodlemancy.datagen.loot.NMBlockLootProvider;
+import net.wetnoodle.noodlemancy.datagen.model.NMModelProvider;
 import net.wetnoodle.noodlemancy.datagen.recipe.NMRecipeProvider;
 import net.wetnoodle.noodlemancy.datagen.tag.NMBlockTagProvider;
 import net.wetnoodle.noodlemancy.datagen.tag.NMItemTagProvider;
@@ -14,7 +15,7 @@ public class NoodlemancyDataGenerator implements DataGeneratorEntrypoint {
 
         // ASSETS
 
-//        pack.addProvider(NMModelProvider::new);
+        pack.addProvider(NMModelProvider::new);
 
         // DATA
 

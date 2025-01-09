@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "noodlemancy:block/pressurized_dropper_vertical",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "noodlemancy:block/pressurized_dropper",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "noodlemancy:block/pressurized_dropper"
+    },
+    "facing=south": {
+      "model": "noodlemancy:block/pressurized_dropper",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "noodlemancy:block/pressurized_dropper_vertical"
+    },
+    "facing=west": {
+      "model": "noodlemancy:block/pressurized_dropper",
+      "y": 270
+    }
+  }
+}

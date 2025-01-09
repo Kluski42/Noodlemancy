@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.wetnoodle.noodlemancy.NMConstants;
 import net.wetnoodle.noodlemancy.block.CreakingEyeBlock;
+import net.wetnoodle.noodlemancy.block.PressurizedDropper;
 
 import java.util.function.Function;
 
@@ -29,6 +30,11 @@ public class NMBlocks {
                     .isRedstoneConductor(Blocks::never)
                     .sound(SoundType.CREAKING_HEART)
     );
+
+    public static final Block POWER_DROPPER = register(
+            "pressurized_dropper",
+            PressurizedDropper::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DROPPER));
 
     public static void init() {
         NMConstants.log("Registering blocks for Noodlemancy", NMConstants.UNSTABLE_LOGGING);
