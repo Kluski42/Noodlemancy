@@ -12,7 +12,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.wetnoodle.noodlemancy.block.CreakingEyeBlock;
-import net.wetnoodle.noodlemancy.registry.NMBlockEntityTypes;
+import net.wetnoodle.noodlemancy.registry.NMBlockEntities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class CreakingEyeBlockEntity extends BlockEntity {
     public static final double DETECTION_RANGE = 60.0 * Math.PI / 180.0;
 
     public CreakingEyeBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(NMBlockEntityTypes.CREAKING_EYE, blockPos, blockState);
+        super(NMBlockEntities.CREAKING_EYE, blockPos, blockState);
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, CreakingEyeBlockEntity eyeBlockEntity) {

@@ -50,6 +50,31 @@ public class NMConstants {
         }
     }
 
+    // WARNING
+    public static void warn(String string, boolean shouldLog) {
+        if (shouldLog) {
+            LOGGER.warn(string);
+        }
+    }
+
+    public static void warn(Entity entity, String string, boolean shouldLog) {
+        if (shouldLog) {
+            LOGGER.warn(entity.toString() + " : " + string + " : " + entity.position());
+        }
+    }
+
+    public static void warn(Block block, String string, boolean shouldLog) {
+        if (shouldLog) {
+            LOGGER.warn(block.toString() + " : " + string + " : ");
+        }
+    }
+
+    public static void warn(Block block, BlockPos pos, String string, boolean shouldLog) {
+        if (shouldLog) {
+            LOGGER.warn(block.toString() + " : " + string + " : " + pos);
+        }
+    }
+
     public static @NotNull ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }

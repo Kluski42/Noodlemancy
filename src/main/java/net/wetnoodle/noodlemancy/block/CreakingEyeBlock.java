@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.wetnoodle.noodlemancy.block.entity.CreakingEyeBlockEntity;
-import net.wetnoodle.noodlemancy.registry.NMBlockEntityTypes;
+import net.wetnoodle.noodlemancy.registry.NMBlockEntities;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -75,7 +75,7 @@ public class CreakingEyeBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        return level.isClientSide() ? null : createTickerHelper(blockEntityType, NMBlockEntityTypes.CREAKING_EYE, CreakingEyeBlockEntity::tick);
+        return level.isClientSide() ? null : createTickerHelper(blockEntityType, NMBlockEntities.CREAKING_EYE, CreakingEyeBlockEntity::tick);
     }
 
     // Fun stuff

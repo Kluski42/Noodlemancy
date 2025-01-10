@@ -11,8 +11,8 @@ public enum ChargingBlockState implements StringRepresentable {
 
     private final String name;
 
-    ChargingBlockState(final String string2) {
-        this.name = string2;
+    ChargingBlockState(final String string) {
+        this.name = string;
     }
 
     /**
