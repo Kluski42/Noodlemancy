@@ -45,7 +45,7 @@ public class PressurizedDropperBlockEntity extends DispenserBlockEntity {
         if (!state.is(NMBlocks.PRESSURIZED_DROPPER) || !state.getValue(PressurizedDropper.CHARGE_STATE).equals(ChargingBlockState.CHARGING))
             return;
 //        System.out.println("Charging!");
-        blockEntity.vacuum(level, pos, state, state.getValue(PressurizedDropper.FACING));
+        blockEntity.vacuum(level, pos, state, state.getValue(PressurizedDropper.ORIENTATION).front());
     }
 
     private void vacuum(Level level, BlockPos pos, BlockState state, Direction facing) {

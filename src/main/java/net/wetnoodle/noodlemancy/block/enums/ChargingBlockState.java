@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 public enum ChargingBlockState implements StringRepresentable {
     UNPOWERED("unpowered"),
     CHARGING("charging"),
+    HOLDING("holding"),
     TRIGGERED("triggered");
 
 
