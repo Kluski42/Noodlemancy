@@ -31,7 +31,7 @@ public class NMBlocks {
                     .sound(SoundType.CREAKING_HEART)
     );
 
-    public static final Block POWER_DROPPER = register(
+    public static final Block PRESSURIZED_DROPPER = register(
             "pressurized_dropper",
             PressurizedDropper::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DROPPER));

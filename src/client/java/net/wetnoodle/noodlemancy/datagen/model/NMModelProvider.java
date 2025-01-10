@@ -25,7 +25,7 @@ public final class NMModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockModelGenerator) {
-        registerDispenserLikeOrientable(blockModelGenerator, NMBlocks.POWER_DROPPER, Blocks.BLAST_FURNACE);
+        registerDispenserLikeOrientable(blockModelGenerator, NMBlocks.PRESSURIZED_DROPPER, Blocks.BLAST_FURNACE);
     }
 
     @Override
@@ -33,7 +33,12 @@ public final class NMModelProvider extends FabricModelProvider {
 
     }
 
-    public final void registerDispenserLikeOrientable(BlockModelGenerators blockStateModelGenerator, Block block, Block stolenBlock) {
+//    public void registerCreakingEyeItem(ItemModelGenerators itemModelGenerator, Block block) {
+//        final ModelTemplate CREAKING_EYE_3 = createBlockModelTemplate("template_fence_gate_open", "_3", TextureSlot.TEXTURE);
+//        ResourceLocation vertIdentifier = CREAKING_EYE_3.create(block, TextureMapping.defaultTexture(block), itemModelGenerator.modelOutput);
+//    }
+
+    public void registerDispenserLikeOrientable(BlockModelGenerators blockStateModelGenerator, Block block, Block stolenBlock) {
         TextureMapping textureMap = new TextureMapping()
                 .put(TextureSlot.TOP, TextureMapping.getBlockTexture(stolenBlock, "_top"))
                 .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(stolenBlock, "_side"))

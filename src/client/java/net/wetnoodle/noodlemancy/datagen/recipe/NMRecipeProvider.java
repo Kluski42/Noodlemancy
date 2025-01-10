@@ -15,6 +15,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
+import static net.minecraft.data.recipes.RecipeProvider.getHasName;
+
 public class NMRecipeProvider extends FabricRecipeProvider {
     public NMRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
@@ -28,22 +30,37 @@ public class NMRecipeProvider extends FabricRecipeProvider {
             public void buildRecipes() {
                 HolderLookup.Provider registries = this.registries;
                 RecipeOutput output = this.output;
-
-                this.shaped(RecipeCategory.REDSTONE, NMBlocks.CREAKING_EYE)
-                        .define('I', Items.IRON_INGOT)
-                        .define('R', Items.REDSTONE)
-                        .define('H', Blocks.CREAKING_HEART)
-                        .pattern("IRI")
-                        .pattern("IHI")
-                        .pattern("IRI")
-                        .unlockedBy(getHasName(Blocks.CREAKING_HEART), has(Blocks.CREAKING_HEART))
-                        .save(output);
+                getCreakingEyeRecipe(this).save(output);
+                getPressurizedDropperRecipe(this).save(output);
             }
         };
     }
 
+    private RecipeBuilder getCreakingEyeRecipe(RecipeProvider recipeProvider) {
+        return recipeProvider.shaped(RecipeCategory.REDSTONE, NMBlocks.CREAKING_EYE)
+                .define('I', Items.IRON_INGOT)
+                .define('R', Items.REDSTONE)
+                .define('H', Blocks.CREAKING_HEART)
+                .pattern("IRI")
+                .pattern("IHI")
+                .pattern("IRI")
+                .unlockedBy(getHasName(Blocks.CREAKING_HEART), recipeProvider.has(Blocks.CREAKING_HEART));
+    }
+
+    private RecipeBuilder getPressurizedDropperRecipe(RecipeProvider recipeProvider) {
+        return recipeProvider.shaped(RecipeCategory.REDSTONE, NMBlocks.PRESSURIZED_DROPPER)
+                .define('I', Items.IRON_INGOT)
+                .define('D', Blocks.DROPPER)
+                .define('B', Items.BREEZE_ROD)
+                .define('S', Blocks.SMOOTH_STONE)
+                .pattern("IDI")
+                .pattern("IBI")
+                .pattern("SSS")
+                .unlockedBy(getHasName(Items.BREEZE_ROD), recipeProvider.has(Items.BREEZE_ROD));
+    }
+
     private void build(RecipeProvider recipeProvider, RecipeBuilder recipeBuilder, ItemLike itemLike2, RecipeOutput output) {
-        recipeBuilder.unlockedBy(RecipeProvider.getHasName(itemLike2), recipeProvider.has(itemLike2)).save(output);
+        recipeBuilder.unlockedBy(getHasName(itemLike2), recipeProvider.has(itemLike2)).save(output);
     }
 
     @Override

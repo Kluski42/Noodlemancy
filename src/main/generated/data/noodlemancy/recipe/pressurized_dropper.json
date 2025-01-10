@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "B": "minecraft:breeze_rod",
+    "D": "minecraft:dropper",
+    "I": "minecraft:iron_ingot",
+    "S": "minecraft:smooth_stone"
+  },
+  "pattern": [
+    "IDI",
+    "IBI",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "noodlemancy:pressurized_dropper"
+  }
+}
