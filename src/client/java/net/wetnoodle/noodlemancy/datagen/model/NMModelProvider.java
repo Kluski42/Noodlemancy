@@ -8,7 +8,6 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.blockstates.Variant;
 import net.minecraft.client.data.models.blockstates.VariantProperties;
-import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
@@ -42,36 +41,35 @@ public final class NMModelProvider extends FabricModelProvider {
 
     // Make face texture change
     public void registerPressurizedDropper(BlockModelGenerators blockStateModelGenerator, Block block, Block stolenBlock) {
-        TextureMapping textureMap = new TextureMapping()
-                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(stolenBlock, "_top"))
-                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(stolenBlock, "_side"))
-                .put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"));
-//        TextureMapping vertTextureMap = new TextureMapping()
-//                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(stolenBlock, "_top"))
-//                .put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front_vertical"));
-
-        ResourceLocation identifier = ModelTemplates.CUBE_ORIENTABLE.create(block, textureMap, blockStateModelGenerator.modelOutput);
-//        ResourceLocation vertIdentifier = ModelTemplates.CUBE_ORIENTABLE_VERTICAL.create(block, vertTextureMap, blockStateModelGenerator.modelOutput);
-        ResourceLocation unpoweredId = ModelLocationUtils.getModelLocation(NMBlocks.PRESSURIZED_DROPPER);
-        ResourceLocation chargingId = ModelLocationUtils.getModelLocation(NMBlocks.PRESSURIZED_DROPPER, "_charging");
-        ResourceLocation holdingId = ModelLocationUtils.getModelLocation(NMBlocks.PRESSURIZED_DROPPER, "_holding");
-        ResourceLocation triggeredId = ModelLocationUtils.getModelLocation(NMBlocks.PRESSURIZED_DROPPER, "_triggered");
+        TextureMapping unpoweredMap = createPressurizedDropperMapping(block, stolenBlock);
+        ResourceLocation unpoweredId = ModelTemplates.CUBE_ORIENTABLE.create(block, unpoweredMap, blockStateModelGenerator.modelOutput);
+        TextureMapping chargingMap = createPressurizedDropperMapping(block, stolenBlock, "_charging");
+        ResourceLocation chargingId = ModelTemplates.CUBE_ORIENTABLE.createWithSuffix(block, "_charging", chargingMap, blockStateModelGenerator.modelOutput);
+        TextureMapping holdingMap = createPressurizedDropperMapping(block, stolenBlock, "_holding");
+        ResourceLocation holdingId = ModelTemplates.CUBE_ORIENTABLE.createWithSuffix(block, "_holding", holdingMap, blockStateModelGenerator.modelOutput);
+        TextureMapping triggeredMap = createPressurizedDropperMapping(block, stolenBlock, "_triggered");
+        ResourceLocation triggeredId = ModelTemplates.CUBE_ORIENTABLE.createWithSuffix(block, "_triggered", triggeredMap, blockStateModelGenerator.modelOutput);
+        
         blockStateModelGenerator.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block)
-//                .with(PropertyDispatch.property(BlockStateProperties.FACING)
-//                        .select(Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, identifier).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
-//                        .select(Direction.UP, Variant.variant().with(VariantProperties.MODEL, identifier).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
-//                        .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, identifier))
-//                        .select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-//                        .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-//                        .select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .with(PropertyDispatch.property(BlockStateProperties.ORIENTATION)
-                                .generate(frontAndTop -> blockStateModelGenerator.applyRotation(frontAndTop, Variant.variant())))
-                        .with(PropertyDispatch.property(PressurizedDropper.CHARGE_STATE)
-                                .select(ChargingBlockState.UNPOWERED, Variant.variant().with(VariantProperties.MODEL, unpoweredId))
-                                .select(ChargingBlockState.CHARGING, Variant.variant().with(VariantProperties.MODEL, chargingId))
-                                .select(ChargingBlockState.HOLDING, Variant.variant().with(VariantProperties.MODEL, holdingId))
-                                .select(ChargingBlockState.TRIGGERED, Variant.variant().with(VariantProperties.MODEL, triggeredId))
-                        )
+                .with(PropertyDispatch.property(BlockStateProperties.ORIENTATION)
+                        .generate(frontAndTop -> blockStateModelGenerator.applyRotation(frontAndTop, Variant.variant())))
+                .with(PropertyDispatch.property(PressurizedDropper.CHARGE_STATE)
+                        .select(ChargingBlockState.UNPOWERED, Variant.variant().with(VariantProperties.MODEL, unpoweredId))
+                        .select(ChargingBlockState.CHARGING, Variant.variant().with(VariantProperties.MODEL, chargingId))
+                        .select(ChargingBlockState.HOLDING, Variant.variant().with(VariantProperties.MODEL, holdingId))
+                        .select(ChargingBlockState.TRIGGERED, Variant.variant().with(VariantProperties.MODEL, triggeredId))
+                )
         );
+    }
+
+    private TextureMapping createPressurizedDropperMapping(Block block, Block stolenBlock) {
+        return createPressurizedDropperMapping(block, stolenBlock, "");
+    }
+
+    private TextureMapping createPressurizedDropperMapping(Block block, Block stolenBlock, String frontSuffix) {
+        return new TextureMapping()
+                .put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front" + frontSuffix))
+                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(stolenBlock, "_side"))
+                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(stolenBlock, "_top"));
     }
 }
