@@ -49,7 +49,7 @@ public final class NMModelProvider extends FabricModelProvider {
         ResourceLocation holdingId = ModelTemplates.CUBE_ORIENTABLE.createWithSuffix(block, "_holding", holdingMap, blockStateModelGenerator.modelOutput);
         TextureMapping triggeredMap = createPressurizedDropperMapping(block, stolenBlock, "_triggered");
         ResourceLocation triggeredId = ModelTemplates.CUBE_ORIENTABLE.createWithSuffix(block, "_triggered", triggeredMap, blockStateModelGenerator.modelOutput);
-        
+
         blockStateModelGenerator.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block)
                 .with(PropertyDispatch.property(BlockStateProperties.ORIENTATION)
                         .generate(frontAndTop -> blockStateModelGenerator.applyRotation(frontAndTop, Variant.variant())))

@@ -21,9 +21,8 @@ public class NMInventorySorting {
 
     private static void initRedstoneBlocks() {
         addBefore(Blocks.SCULK_SENSOR, NMBlocks.CREAKING_EYE, REDSTONE_BLOCKS);
-
+        addAfter(Blocks.DROPPER, NMBlocks.PRESSURIZED_DROPPER, REDSTONE_BLOCKS);
     }
-
 
     // Copied from FrozenLib
 
