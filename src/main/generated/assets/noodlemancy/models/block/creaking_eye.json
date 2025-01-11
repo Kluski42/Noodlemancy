@@ -1,0 +1,8 @@
+{
+  "parent": "noodlemancy:block/observeresque",
+  "textures": {
+    "back": "noodlemancy:block/creaking_eye_back",
+    "front": "noodlemancy:block/creaking_eye_front",
+    "side": "noodlemancy:block/creaking_eye_side"
+  }
+}

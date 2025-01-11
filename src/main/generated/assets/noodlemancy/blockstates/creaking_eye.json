@@ -1,0 +1,96 @@
+{
+  "variants": {
+    "eyes=0,facing=down": {
+      "model": "noodlemancy:block/creaking_eye",
+      "x": 90
+    },
+    "eyes=0,facing=east": {
+      "model": "noodlemancy:block/creaking_eye",
+      "y": 90
+    },
+    "eyes=0,facing=north": {
+      "model": "noodlemancy:block/creaking_eye"
+    },
+    "eyes=0,facing=south": {
+      "model": "noodlemancy:block/creaking_eye",
+      "y": 180
+    },
+    "eyes=0,facing=up": {
+      "model": "noodlemancy:block/creaking_eye",
+      "x": 270
+    },
+    "eyes=0,facing=west": {
+      "model": "noodlemancy:block/creaking_eye",
+      "y": 270
+    },
+    "eyes=1,facing=down": {
+      "model": "noodlemancy:block/creaking_eye_1",
+      "x": 90
+    },
+    "eyes=1,facing=east": {
+      "model": "noodlemancy:block/creaking_eye_1",
+      "y": 90
+    },
+    "eyes=1,facing=north": {
+      "model": "noodlemancy:block/creaking_eye_1"
+    },
+    "eyes=1,facing=south": {
+      "model": "noodlemancy:block/creaking_eye_1",
+      "y": 180
+    },
+    "eyes=1,facing=up": {
+      "model": "noodlemancy:block/creaking_eye_1",
+      "x": 270
+    },
+    "eyes=1,facing=west": {
+      "model": "noodlemancy:block/creaking_eye_1",
+      "y": 270
+    },
+    "eyes=2,facing=down": {
+      "model": "noodlemancy:block/creaking_eye_2",
+      "x": 90
+    },
+    "eyes=2,facing=east": {
+      "model": "noodlemancy:block/creaking_eye_2",
+      "y": 90
+    },
+    "eyes=2,facing=north": {
+      "model": "noodlemancy:block/creaking_eye_2"
+    },
+    "eyes=2,facing=south": {
+      "model": "noodlemancy:block/creaking_eye_2",
+      "y": 180
+    },
+    "eyes=2,facing=up": {
+      "model": "noodlemancy:block/creaking_eye_2",
+      "x": 270
+    },
+    "eyes=2,facing=west": {
+      "model": "noodlemancy:block/creaking_eye_2",
+      "y": 270
+    },
+    "eyes=3,facing=down": {
+      "model": "noodlemancy:block/creaking_eye_3",
+      "x": 90
+    },
+    "eyes=3,facing=east": {
+      "model": "noodlemancy:block/creaking_eye_3",
+      "y": 90
+    },
+    "eyes=3,facing=north": {
+      "model": "noodlemancy:block/creaking_eye_3"
+    },
+    "eyes=3,facing=south": {
+      "model": "noodlemancy:block/creaking_eye_3",
+      "y": 180
+    },
+    "eyes=3,facing=up": {
+      "model": "noodlemancy:block/creaking_eye_3",
+      "x": 270
+    },
+    "eyes=3,facing=west": {
+      "model": "noodlemancy:block/creaking_eye_3",
+      "y": 270
+    }
+  }
+}

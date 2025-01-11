@@ -15,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.wetnoodle.noodlemancy.block.CreakingEyeBlock;
 import net.wetnoodle.noodlemancy.block.PressurizedDropper;
 import net.wetnoodle.noodlemancy.block.enums.ChargingBlockState;
 import net.wetnoodle.noodlemancy.registry.NMBlocks;
@@ -26,6 +27,7 @@ public final class NMModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockModelGenerator) {
+        registerCreakingEye(blockModelGenerator, NMBlocks.CREAKING_EYE);
         registerPressurizedDropper(blockModelGenerator, NMBlocks.PRESSURIZED_DROPPER, Blocks.BLAST_FURNACE);
     }
 
@@ -34,10 +36,30 @@ public final class NMModelProvider extends FabricModelProvider {
 
     }
 
-//    public void registerCreakingEyeItem(ItemModelGenerators itemModelGenerator, Block block) {
-//        final ModelTemplate CREAKING_EYE_3 = createBlockModelTemplate("template_fence_gate_open", "_3", TextureSlot.TEXTURE);
-//        ResourceLocation vertIdentifier = CREAKING_EYE_3.create(block, TextureMapping.defaultTexture(block), itemModelGenerator.modelOutput);
-//    }
+    public void registerCreakingEye(BlockModelGenerators blockStateModelGenerator, Block block) {
+        TextureMapping map0 = createCreakingEyeOffMapping(block);
+        ResourceLocation id0 = NMModelTemplates.CREAKING_EYE_OFF_TEMPLATE.create(block, map0, blockStateModelGenerator.modelOutput);
+        TextureMapping map1 = createCreakingEyeMapping(block, 1);
+        ResourceLocation id1 = NMModelTemplates.CREAKING_EYE_TEMPLATE.createWithSuffix(block, "_1", map1, blockStateModelGenerator.modelOutput);
+        TextureMapping map2 = createCreakingEyeMapping(block, 2);
+        ResourceLocation id2 = NMModelTemplates.CREAKING_EYE_TEMPLATE.createWithSuffix(block, "_2", map2, blockStateModelGenerator.modelOutput);
+        TextureMapping map3 = createCreakingEyeMapping(block, 3);
+        ResourceLocation id3 = NMModelTemplates.CREAKING_EYE_TEMPLATE.createWithSuffix(block, "_3", map3, blockStateModelGenerator.modelOutput);
+
+        TextureMapping mapItem = createCreakingEyeOffMapping(block).put(NMTextureSlots.FRONT_EMISSIVE, TextureMapping.getBlockTexture(block, "_emissive_3"));
+        ResourceLocation idItem = NMModelTemplates.CREAKING_EYE_TEMPLATE.createWithSuffix(block, "_item", mapItem, blockStateModelGenerator.modelOutput);
+        blockStateModelGenerator.registerSimpleItemModel(NMBlocks.CREAKING_EYE, idItem);
+
+        blockStateModelGenerator.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block)
+                .with(BlockModelGenerators.createFacingDispatch())
+                .with(PropertyDispatch.property(CreakingEyeBlock.EYES)
+                        .select(0, Variant.variant().with(VariantProperties.MODEL, id0))
+                        .select(1, Variant.variant().with(VariantProperties.MODEL, id1))
+                        .select(2, Variant.variant().with(VariantProperties.MODEL, id2))
+                        .select(3, Variant.variant().with(VariantProperties.MODEL, id3))
+                )
+        );
+    }
 
     // Make face texture change
     public void registerPressurizedDropper(BlockModelGenerators blockStateModelGenerator, Block block, Block stolenBlock) {
@@ -60,6 +82,23 @@ public final class NMModelProvider extends FabricModelProvider {
                         .select(ChargingBlockState.TRIGGERED, Variant.variant().with(VariantProperties.MODEL, triggeredId))
                 )
         );
+    }
+
+    // Mappings
+
+    private TextureMapping createCreakingEyeOffMapping(Block block) {
+        return new TextureMapping()
+                .put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"))
+                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"))
+                .put(TextureSlot.BACK, TextureMapping.getBlockTexture(block, "_back"));
+    }
+
+    private TextureMapping createCreakingEyeMapping(Block block, int eyes) {
+        return new TextureMapping()
+                .put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"))
+                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"))
+                .put(TextureSlot.BACK, TextureMapping.getBlockTexture(block, "_back_on"))
+                .put(NMTextureSlots.FRONT_EMISSIVE, TextureMapping.getBlockTexture(block, "_emissive_" + eyes));
     }
 
     private TextureMapping createPressurizedDropperMapping(Block block, Block stolenBlock) {
