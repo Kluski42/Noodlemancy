@@ -3,13 +3,15 @@
   "id": "noodlemancy",
   "version": "${version}",
   "name": "Noodlemancy",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Adds new uses & interactions for magical blocks and items in the game.",
   "authors": [
     "Wet Noodle"
   ],
+  "contributors": [
+    "IndigoTail"
+  ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/Kluski42/Noodlemancy"
   },
   "license": "CC0-1.0",
   "icon": "assets/noodlemancy/icon.png",
