@@ -33,6 +33,7 @@ import net.minecraft.world.phys.Vec3;
 import net.wetnoodle.noodlemancy.NMConstants;
 import net.wetnoodle.noodlemancy.block.entity.PressurizedDropperBlockEntity;
 import net.wetnoodle.noodlemancy.block.enums.ChargingBlockState;
+import net.wetnoodle.noodlemancy.config.NMConfig;
 import net.wetnoodle.noodlemancy.registry.NMBlockEntities;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -131,6 +132,9 @@ public class PressurizedDropper extends BaseEntityBlock {
 
     @Override
     protected int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos blockPos) {
+        if (!NMConfig.PRESSURIZED_DROPPER_ENABLED) {
+            return 0;
+        }
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
         if (blockEntity instanceof PressurizedDropperBlockEntity pressurizedDropperBlockEntity) {
             return pressurizedDropperBlockEntity.getComparatorOutput();
@@ -140,6 +144,22 @@ public class PressurizedDropper extends BaseEntityBlock {
 
     @Override
     protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, @Nullable Orientation orientation, boolean bl) {
+        if (!NMConfig.PRESSURIZED_DROPPER_ENABLED) {
+            boolean stateUpdated = false;
+            if (state.getValue(POWERED)) {
+                state = state.setValue(POWERED, false);
+                stateUpdated = true;
+            }
+            ChargingBlockState chargeState = state.getValue(CHARGE_STATE);
+            if (!chargeState.equals(UNPOWERED)) {
+                state = state.setValue(CHARGE_STATE, UNPOWERED);
+                stateUpdated = true;
+            }
+            if (stateUpdated) {
+                level.setBlock(pos, state, Block.UPDATE_CLIENTS);
+            }
+            return;
+        }
         if (!(level.getBlockEntity(pos) instanceof PressurizedDropperBlockEntity blockEntity)) return;
         boolean stateUpdated = false;
         boolean receivingPower = level.hasNeighborSignal(pos) || level.hasNeighborSignal(pos.above());
@@ -166,6 +186,9 @@ public class PressurizedDropper extends BaseEntityBlock {
 
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
+        if (!NMConfig.PRESSURIZED_DROPPER_ENABLED) {
+            return;
+        }
         boolean receivingPower = state.getValue(POWERED);
         ChargingBlockState chargeState = state.getValue(CHARGE_STATE);
         if (!(level.getBlockEntity(pos) instanceof PressurizedDropperBlockEntity blockEntity)) return;

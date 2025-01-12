@@ -12,6 +12,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.wetnoodle.noodlemancy.block.CreakingEyeBlock;
+import net.wetnoodle.noodlemancy.config.NMConfig;
 import net.wetnoodle.noodlemancy.registry.NMBlockEntities;
 
 import java.util.ArrayList;
@@ -29,7 +30,11 @@ public class CreakingEyeBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, CreakingEyeBlockEntity eyeBlockEntity) {
-        calculatePower(level, blockPos, blockState);
+        if (NMConfig.CREAKING_EYE_ENABLED) {
+            calculatePower(level, blockPos, blockState);
+        } else {
+            CreakingEyeBlock.updatePower(level, blockPos, blockState, 0);
+        }
     }
 
     private static void calculatePower(Level level, BlockPos blockPos, BlockState blockState) {
