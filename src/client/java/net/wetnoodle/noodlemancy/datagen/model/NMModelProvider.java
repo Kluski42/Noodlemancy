@@ -1,16 +1,14 @@
 package net.wetnoodle.noodlemancy.datagen.model;
 
-import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.client.data.models.BlockModelGenerators;
-import net.minecraft.client.data.models.ItemModelGenerators;
-import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.data.models.blockstates.Variant;
-import net.minecraft.client.data.models.blockstates.VariantProperties;
-import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TextureSlot;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.minecraft.data.models.BlockModelGenerators;
+import net.minecraft.data.models.ItemModelGenerators;
+import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.PropertyDispatch;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
+import net.minecraft.data.models.model.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -48,8 +46,8 @@ public final class NMModelProvider extends FabricModelProvider {
 
         TextureMapping mapItem = createCreakingEyeOffMapping(block).put(NMTextureSlots.FRONT_EMISSIVE, TextureMapping.getBlockTexture(block, "_emissive_3"));
         ResourceLocation idItem = NMModelTemplates.CREAKING_EYE_TEMPLATE.createWithSuffix(block, "_item", mapItem, blockStateModelGenerator.modelOutput);
-        blockStateModelGenerator.registerSimpleItemModel(NMBlocks.CREAKING_EYE, idItem);
-
+//        blockStateModelGenerator.registerSimpleItemModel(NMBlocks.CREAKING_EYE, idItem);
+//        blockStateModelGenerator.modelOutput.accept(ModelLocationUtils.getModelLocation(NMBlocks.CREAKING_EYE), new DelegatedModel(idItem));
         blockStateModelGenerator.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block)
                 .with(BlockModelGenerators.createFacingDispatch())
                 .with(PropertyDispatch.property(CreakingEyeBlock.EYES)
@@ -82,6 +80,7 @@ public final class NMModelProvider extends FabricModelProvider {
                         .select(ChargingBlockState.TRIGGERED, Variant.variant().with(VariantProperties.MODEL, triggeredId))
                 )
         );
+//        blockStateModelGenerator.modelOutput.accept(ModelLocationUtils.getModelLocation(NMBlocks.PRESSURIZED_DROPPER), new DelegatedModel(unpoweredId));
     }
 
     // Mappings

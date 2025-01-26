@@ -1,7 +1,7 @@
 package net.wetnoodle.noodlemancy.datagen.model;
 
-import net.minecraft.client.data.models.model.ModelTemplate;
-import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.data.models.model.ModelTemplate;
+import net.minecraft.data.models.model.TextureSlot;
 import net.wetnoodle.noodlemancy.NMConstants;
 
 import java.util.Optional;
