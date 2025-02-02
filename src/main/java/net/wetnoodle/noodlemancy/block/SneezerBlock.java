@@ -31,7 +31,7 @@ import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.wetnoodle.noodlemancy.NMConstants;
-import net.wetnoodle.noodlemancy.block.entity.PressurizedDropperBlockEntity;
+import net.wetnoodle.noodlemancy.block.entity.SneezerBlockEntity;
 import net.wetnoodle.noodlemancy.block.enums.ChargingBlockState;
 import net.wetnoodle.noodlemancy.config.NMConfig;
 import net.wetnoodle.noodlemancy.registry.NMBlockEntities;
@@ -40,15 +40,15 @@ import org.jetbrains.annotations.Nullable;
 
 import static net.wetnoodle.noodlemancy.block.enums.ChargingBlockState.*;
 
-public class PressurizedDropper extends BaseEntityBlock {
-    public static final MapCodec<PressurizedDropper> CODEC = BlockBehaviour.simpleCodec(PressurizedDropper::new);
+public class SneezerBlock extends BaseEntityBlock {
+    public static final MapCodec<SneezerBlock> CODEC = BlockBehaviour.simpleCodec(SneezerBlock::new);
     public static final EnumProperty<ChargingBlockState> CHARGE_STATE = EnumProperty.create("state", ChargingBlockState.class);
     public static final EnumProperty<FrontAndTop> ORIENTATION = BlockStateProperties.ORIENTATION;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     private static final int CHARGING_TIME = 20;
 
-    public PressurizedDropper(BlockBehaviour.Properties properties) {
+    public SneezerBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(ORIENTATION, FrontAndTop.NORTH_UP).setValue(CHARGE_STATE, UNPOWERED).setValue(POWERED, false));
     }
@@ -97,13 +97,13 @@ public class PressurizedDropper extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new PressurizedDropperBlockEntity(blockPos, blockState);
+        return new SneezerBlockEntity(blockPos, blockState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, NMBlockEntities.PRESSURIZED_DROPPER, PressurizedDropperBlockEntity::tick);
+        return createTickerHelper(blockEntityType, NMBlockEntities.SNEEZER, SneezerBlockEntity::tick);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class PressurizedDropper extends BaseEntityBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos pos, Player player, BlockHitResult blockHitResult) {
         if (level.isClientSide()) return InteractionResult.SUCCESS;
-        if (level.getBlockEntity(pos) instanceof PressurizedDropperBlockEntity blockEntity) {
+        if (level.getBlockEntity(pos) instanceof SneezerBlockEntity blockEntity) {
             player.openMenu(blockEntity);
             // ToDo: Add Stats
         }
@@ -132,19 +132,19 @@ public class PressurizedDropper extends BaseEntityBlock {
 
     @Override
     protected int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos blockPos) {
-        if (!NMConfig.PRESSURIZED_DROPPER_ENABLED) {
+        if (!NMConfig.SNEEZER_ENABLED) {
             return 0;
         }
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if (blockEntity instanceof PressurizedDropperBlockEntity pressurizedDropperBlockEntity) {
-            return pressurizedDropperBlockEntity.getComparatorOutput();
+        if (blockEntity instanceof SneezerBlockEntity sneezerBlockEntity) {
+            return sneezerBlockEntity.getComparatorOutput();
         }
         return 0;
     }
 
     @Override
     protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, @Nullable Orientation orientation, boolean bl) {
-        if (!NMConfig.PRESSURIZED_DROPPER_ENABLED) {
+        if (!NMConfig.SNEEZER_ENABLED) {
             boolean stateUpdated = false;
             if (state.getValue(POWERED)) {
                 state = state.setValue(POWERED, false);
@@ -160,7 +160,7 @@ public class PressurizedDropper extends BaseEntityBlock {
             }
             return;
         }
-        if (!(level.getBlockEntity(pos) instanceof PressurizedDropperBlockEntity blockEntity)) return;
+        if (!(level.getBlockEntity(pos) instanceof SneezerBlockEntity blockEntity)) return;
         boolean stateUpdated = false;
         boolean receivingPower = level.hasNeighborSignal(pos) || level.hasNeighborSignal(pos.above());
         if (receivingPower != state.getValue(POWERED)) {
@@ -186,12 +186,12 @@ public class PressurizedDropper extends BaseEntityBlock {
 
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
-        if (!NMConfig.PRESSURIZED_DROPPER_ENABLED) {
+        if (!NMConfig.SNEEZER_ENABLED) {
             return;
         }
         boolean receivingPower = state.getValue(POWERED);
         ChargingBlockState chargeState = state.getValue(CHARGE_STATE);
-        if (!(level.getBlockEntity(pos) instanceof PressurizedDropperBlockEntity blockEntity)) return;
+        if (!(level.getBlockEntity(pos) instanceof SneezerBlockEntity blockEntity)) return;
         if (chargeState.equals(CHARGING) && receivingPower) {
             int timeDif = (int) (level.getGameTime() - blockEntity.updatedTime);
             if (timeDif >= CHARGING_TIME) {
@@ -210,7 +210,7 @@ public class PressurizedDropper extends BaseEntityBlock {
     }
 
     protected void dispense(ServerLevel level, BlockState state, BlockPos pos) {
-        PressurizedDropperBlockEntity pressurizedDropperEntity = level.getBlockEntity(pos, NMBlockEntities.PRESSURIZED_DROPPER).orElse(null);
+        SneezerBlockEntity pressurizedDropperEntity = level.getBlockEntity(pos, NMBlockEntities.SNEEZER).orElse(null);
         if (pressurizedDropperEntity == null) {
             NMConstants.warn("Ignoring dispensing attempt for Power Dropper without matching block entity at " + pos, true);
             return;
@@ -244,7 +244,7 @@ public class PressurizedDropper extends BaseEntityBlock {
     private ItemStack dispenseItems(BlockSource blockSource, ItemStack itemStack) {
         ItemStack itemStack2 = this.execute(blockSource, itemStack);
         this.playSound(blockSource);
-        this.playAnimation(blockSource, blockSource.state().getValue(PressurizedDropper.ORIENTATION).front());
+        this.playAnimation(blockSource, blockSource.state().getValue(SneezerBlock.ORIENTATION).front());
         return itemStack2;
     }
 
@@ -257,8 +257,8 @@ public class PressurizedDropper extends BaseEntityBlock {
     }
 
     protected ItemStack execute(BlockSource blockSource, ItemStack stack) {
-        Direction direction = blockSource.state().getValue(PressurizedDropper.ORIENTATION).front();
-        Position position = PressurizedDropper.getDispensePosition(blockSource);
+        Direction direction = blockSource.state().getValue(SneezerBlock.ORIENTATION).front();
+        Position position = SneezerBlock.getDispensePosition(blockSource);
         ItemStack itemStack = stack.copyAndClear();
         spawnItem(blockSource.level(), itemStack, 6, direction, position);
         return stack;

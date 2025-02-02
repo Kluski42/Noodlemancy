@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "noodlemancy:pressurized_dropper"
+        "recipe": "noodlemancy:sneezer"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "noodlemancy:pressurized_dropper"
+      "noodlemancy:sneezer"
     ]
   }
 }

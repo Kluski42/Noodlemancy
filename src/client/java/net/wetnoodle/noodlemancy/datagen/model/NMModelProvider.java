@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.wetnoodle.noodlemancy.block.CreakingEyeBlock;
-import net.wetnoodle.noodlemancy.block.PressurizedDropper;
+import net.wetnoodle.noodlemancy.block.SneezerBlock;
 import net.wetnoodle.noodlemancy.block.enums.ChargingBlockState;
 import net.wetnoodle.noodlemancy.registry.NMBlocks;
 
@@ -26,7 +26,7 @@ public final class NMModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockModelGenerator) {
         registerCreakingEye(blockModelGenerator, NMBlocks.CREAKING_EYE);
-        registerPressurizedDropper(blockModelGenerator, NMBlocks.PRESSURIZED_DROPPER, Blocks.BLAST_FURNACE);
+        registerSneezer(blockModelGenerator, NMBlocks.SNEEZER, Blocks.BLAST_FURNACE);
     }
 
     @Override
@@ -60,20 +60,20 @@ public final class NMModelProvider extends FabricModelProvider {
     }
 
     // Make face texture change
-    public void registerPressurizedDropper(BlockModelGenerators blockStateModelGenerator, Block block, Block stolenBlock) {
-        TextureMapping unpoweredMap = createPressurizedDropperMapping(block, stolenBlock);
+    public void registerSneezer(BlockModelGenerators blockStateModelGenerator, Block block, Block stolenBlock) {
+        TextureMapping unpoweredMap = createSneezerMapping(block, stolenBlock);
         ResourceLocation unpoweredId = ModelTemplates.CUBE_ORIENTABLE.create(block, unpoweredMap, blockStateModelGenerator.modelOutput);
-        TextureMapping chargingMap = createPressurizedDropperMapping(block, stolenBlock, "_charging");
+        TextureMapping chargingMap = createSneezerMapping(block, stolenBlock, "_charging");
         ResourceLocation chargingId = ModelTemplates.CUBE_ORIENTABLE.createWithSuffix(block, "_charging", chargingMap, blockStateModelGenerator.modelOutput);
-        TextureMapping holdingMap = createPressurizedDropperMapping(block, stolenBlock, "_holding");
+        TextureMapping holdingMap = createSneezerMapping(block, stolenBlock, "_holding");
         ResourceLocation holdingId = ModelTemplates.CUBE_ORIENTABLE.createWithSuffix(block, "_holding", holdingMap, blockStateModelGenerator.modelOutput);
-        TextureMapping triggeredMap = createPressurizedDropperMapping(block, stolenBlock, "_triggered");
+        TextureMapping triggeredMap = createSneezerMapping(block, stolenBlock, "_triggered");
         ResourceLocation triggeredId = ModelTemplates.CUBE_ORIENTABLE.createWithSuffix(block, "_triggered", triggeredMap, blockStateModelGenerator.modelOutput);
 
         blockStateModelGenerator.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block)
                 .with(PropertyDispatch.property(BlockStateProperties.ORIENTATION)
                         .generate(frontAndTop -> blockStateModelGenerator.applyRotation(frontAndTop, Variant.variant())))
-                .with(PropertyDispatch.property(PressurizedDropper.CHARGE_STATE)
+                .with(PropertyDispatch.property(SneezerBlock.CHARGE_STATE)
                         .select(ChargingBlockState.UNPOWERED, Variant.variant().with(VariantProperties.MODEL, unpoweredId))
                         .select(ChargingBlockState.CHARGING, Variant.variant().with(VariantProperties.MODEL, chargingId))
                         .select(ChargingBlockState.HOLDING, Variant.variant().with(VariantProperties.MODEL, holdingId))
@@ -100,11 +100,11 @@ public final class NMModelProvider extends FabricModelProvider {
                 .put(NMTextureSlots.FRONT_EMISSIVE, TextureMapping.getBlockTexture(block, "_emissive_" + eyes));
     }
 
-    private TextureMapping createPressurizedDropperMapping(Block block, Block stolenBlock) {
-        return createPressurizedDropperMapping(block, stolenBlock, "");
+    private TextureMapping createSneezerMapping(Block block, Block stolenBlock) {
+        return createSneezerMapping(block, stolenBlock, "");
     }
 
-    private TextureMapping createPressurizedDropperMapping(Block block, Block stolenBlock, String frontSuffix) {
+    private TextureMapping createSneezerMapping(Block block, Block stolenBlock, String frontSuffix) {
         return new TextureMapping()
                 .put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front" + frontSuffix))
                 .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(stolenBlock, "_side"))

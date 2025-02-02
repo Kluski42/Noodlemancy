@@ -1,215 +1,215 @@
 {
   "variants": {
     "orientation=down_east,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging",
+      "model": "noodlemancy:block/sneezer_charging",
       "x": 90,
       "y": 90
     },
     "orientation=down_east,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding",
+      "model": "noodlemancy:block/sneezer_holding",
       "x": 90,
       "y": 90
     },
     "orientation=down_east,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered",
+      "model": "noodlemancy:block/sneezer_triggered",
       "x": 90,
       "y": 90
     },
     "orientation=down_east,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper",
+      "model": "noodlemancy:block/sneezer",
       "x": 90,
       "y": 90
     },
     "orientation=down_north,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging",
+      "model": "noodlemancy:block/sneezer_charging",
       "x": 90
     },
     "orientation=down_north,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding",
+      "model": "noodlemancy:block/sneezer_holding",
       "x": 90
     },
     "orientation=down_north,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered",
+      "model": "noodlemancy:block/sneezer_triggered",
       "x": 90
     },
     "orientation=down_north,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper",
+      "model": "noodlemancy:block/sneezer",
       "x": 90
     },
     "orientation=down_south,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging",
+      "model": "noodlemancy:block/sneezer_charging",
       "x": 90,
       "y": 180
     },
     "orientation=down_south,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding",
+      "model": "noodlemancy:block/sneezer_holding",
       "x": 90,
       "y": 180
     },
     "orientation=down_south,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered",
+      "model": "noodlemancy:block/sneezer_triggered",
       "x": 90,
       "y": 180
     },
     "orientation=down_south,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper",
+      "model": "noodlemancy:block/sneezer",
       "x": 90,
       "y": 180
     },
     "orientation=down_west,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging",
+      "model": "noodlemancy:block/sneezer_charging",
       "x": 90,
       "y": 270
     },
     "orientation=down_west,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding",
+      "model": "noodlemancy:block/sneezer_holding",
       "x": 90,
       "y": 270
     },
     "orientation=down_west,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered",
+      "model": "noodlemancy:block/sneezer_triggered",
       "x": 90,
       "y": 270
     },
     "orientation=down_west,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper",
+      "model": "noodlemancy:block/sneezer",
       "x": 90,
       "y": 270
     },
     "orientation=east_up,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging",
+      "model": "noodlemancy:block/sneezer_charging",
       "y": 90
     },
     "orientation=east_up,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding",
+      "model": "noodlemancy:block/sneezer_holding",
       "y": 90
     },
     "orientation=east_up,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered",
+      "model": "noodlemancy:block/sneezer_triggered",
       "y": 90
     },
     "orientation=east_up,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper",
+      "model": "noodlemancy:block/sneezer",
       "y": 90
     },
     "orientation=north_up,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging"
+      "model": "noodlemancy:block/sneezer_charging"
     },
     "orientation=north_up,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding"
+      "model": "noodlemancy:block/sneezer_holding"
     },
     "orientation=north_up,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered"
+      "model": "noodlemancy:block/sneezer_triggered"
     },
     "orientation=north_up,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper"
+      "model": "noodlemancy:block/sneezer"
     },
     "orientation=south_up,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging",
+      "model": "noodlemancy:block/sneezer_charging",
       "y": 180
     },
     "orientation=south_up,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding",
+      "model": "noodlemancy:block/sneezer_holding",
       "y": 180
     },
     "orientation=south_up,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered",
+      "model": "noodlemancy:block/sneezer_triggered",
       "y": 180
     },
     "orientation=south_up,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper",
+      "model": "noodlemancy:block/sneezer",
       "y": 180
     },
     "orientation=up_east,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging",
+      "model": "noodlemancy:block/sneezer_charging",
       "x": 270,
       "y": 270
     },
     "orientation=up_east,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding",
+      "model": "noodlemancy:block/sneezer_holding",
       "x": 270,
       "y": 270
     },
     "orientation=up_east,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered",
+      "model": "noodlemancy:block/sneezer_triggered",
       "x": 270,
       "y": 270
     },
     "orientation=up_east,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper",
+      "model": "noodlemancy:block/sneezer",
       "x": 270,
       "y": 270
     },
     "orientation=up_north,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging",
+      "model": "noodlemancy:block/sneezer_charging",
       "x": 270,
       "y": 180
     },
     "orientation=up_north,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding",
+      "model": "noodlemancy:block/sneezer_holding",
       "x": 270,
       "y": 180
     },
     "orientation=up_north,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered",
+      "model": "noodlemancy:block/sneezer_triggered",
       "x": 270,
       "y": 180
     },
     "orientation=up_north,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper",
+      "model": "noodlemancy:block/sneezer",
       "x": 270,
       "y": 180
     },
     "orientation=up_south,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging",
+      "model": "noodlemancy:block/sneezer_charging",
       "x": 270
     },
     "orientation=up_south,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding",
+      "model": "noodlemancy:block/sneezer_holding",
       "x": 270
     },
     "orientation=up_south,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered",
+      "model": "noodlemancy:block/sneezer_triggered",
       "x": 270
     },
     "orientation=up_south,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper",
+      "model": "noodlemancy:block/sneezer",
       "x": 270
     },
     "orientation=up_west,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging",
+      "model": "noodlemancy:block/sneezer_charging",
       "x": 270,
       "y": 90
     },
     "orientation=up_west,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding",
+      "model": "noodlemancy:block/sneezer_holding",
       "x": 270,
       "y": 90
     },
     "orientation=up_west,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered",
+      "model": "noodlemancy:block/sneezer_triggered",
       "x": 270,
       "y": 90
     },
     "orientation=up_west,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper",
+      "model": "noodlemancy:block/sneezer",
       "x": 270,
       "y": 90
     },
     "orientation=west_up,state=charging": {
-      "model": "noodlemancy:block/pressurized_dropper_charging",
+      "model": "noodlemancy:block/sneezer_charging",
       "y": 270
     },
     "orientation=west_up,state=holding": {
-      "model": "noodlemancy:block/pressurized_dropper_holding",
+      "model": "noodlemancy:block/sneezer_holding",
       "y": 270
     },
     "orientation=west_up,state=triggered": {
-      "model": "noodlemancy:block/pressurized_dropper_triggered",
+      "model": "noodlemancy:block/sneezer_triggered",
       "y": 270
     },
     "orientation=west_up,state=unpowered": {
-      "model": "noodlemancy:block/pressurized_dropper",
+      "model": "noodlemancy:block/sneezer",
       "y": 270
     }
   }
