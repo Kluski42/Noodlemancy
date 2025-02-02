@@ -3,12 +3,13 @@
   "id": "noodlemancy",
   "version": "${version}",
   "name": "Noodlemancy",
-  "description": "Adds new uses & interactions for magical blocks and items in the game.",
+  "description": "Adds new uses & interactions for magical blocks and items in the game, including redstone components.",
   "authors": [
     "Wet Noodle"
   ],
   "contributors": [
-    "IndigoTail"
+    "IndigoTail",
+    "NL Morrison"
   ],
   "contact": {
     "sources": "https://github.com/Kluski42/Noodlemancy"
