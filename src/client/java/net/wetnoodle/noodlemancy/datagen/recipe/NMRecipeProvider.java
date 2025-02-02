@@ -31,7 +31,7 @@ public class NMRecipeProvider extends FabricRecipeProvider {
                 HolderLookup.Provider registries = this.registries;
                 RecipeOutput output = this.output;
                 getCreakingEyeRecipe(this).save(output);
-                getPressurizedDropperRecipe(this).save(output);
+                getSneezerRecipe(this).save(output);
             }
         };
     }
@@ -47,8 +47,8 @@ public class NMRecipeProvider extends FabricRecipeProvider {
                 .unlockedBy(getHasName(Blocks.CREAKING_HEART), recipeProvider.has(Blocks.CREAKING_HEART));
     }
 
-    private RecipeBuilder getPressurizedDropperRecipe(RecipeProvider recipeProvider) {
-        return recipeProvider.shaped(RecipeCategory.REDSTONE, NMBlocks.PRESSURIZED_DROPPER)
+    private RecipeBuilder getSneezerRecipe(RecipeProvider recipeProvider) {
+        return recipeProvider.shaped(RecipeCategory.REDSTONE, NMBlocks.SNEEZER)
                 .define('I', Items.IRON_INGOT)
                 .define('D', Blocks.DROPPER)
                 .define('B', Items.BREEZE_ROD)

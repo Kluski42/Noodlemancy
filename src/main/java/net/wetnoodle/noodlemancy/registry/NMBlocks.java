@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.wetnoodle.noodlemancy.NMConstants;
 import net.wetnoodle.noodlemancy.block.CreakingEyeBlock;
-import net.wetnoodle.noodlemancy.block.PressurizedDropper;
+import net.wetnoodle.noodlemancy.block.SneezerBlock;
 
 import java.util.function.Function;
 
@@ -31,9 +31,9 @@ public class NMBlocks {
                     .sound(SoundType.CREAKING_HEART)
     );
 
-    public static final Block PRESSURIZED_DROPPER = register(
-            "pressurized_dropper",
-            PressurizedDropper::new,
+    public static final Block SNEEZER = register(
+            "sneezer",
+            SneezerBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DROPPER));
 
     public static void init() {

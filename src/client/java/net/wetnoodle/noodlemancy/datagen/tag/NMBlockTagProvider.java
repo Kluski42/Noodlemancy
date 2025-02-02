@@ -20,13 +20,13 @@ public class NMBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         generateMiningTags();
-        generatePressurizedDropperTags();
+        generateSneezerTags();
     }
 
     private void generateMiningTags() {
         this.getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(NMBlocks.CREAKING_EYE)
-                .add(NMBlocks.PRESSURIZED_DROPPER);
+                .add(NMBlocks.SNEEZER);
 
         getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL);
 
@@ -36,7 +36,7 @@ public class NMBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     }
 
     // Stolen directly from Wilder Wild's geyser <3
-    private void generatePressurizedDropperTags() {
+    private void generateSneezerTags() {
         this.getOrCreateTagBuilder(NMBlockTags.AIR_CAN_PASS_THROUGH)
                 .addOptionalTag(BlockTags.TRAPDOORS)
                 .add(Blocks.COPPER_GRATE)

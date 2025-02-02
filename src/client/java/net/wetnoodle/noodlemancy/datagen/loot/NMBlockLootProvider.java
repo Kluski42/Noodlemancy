@@ -15,6 +15,6 @@ public class NMBlockLootProvider extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         this.dropSelf(NMBlocks.CREAKING_EYE);
-        this.dropSelf(NMBlocks.PRESSURIZED_DROPPER);
+        this.dropSelf(NMBlocks.SNEEZER);
     }
 }

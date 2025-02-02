@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.wetnoodle.noodlemancy.block.PressurizedDropper;
+import net.wetnoodle.noodlemancy.block.SneezerBlock;
 import net.wetnoodle.noodlemancy.block.enums.ChargingBlockState;
 import net.wetnoodle.noodlemancy.registry.NMBlockEntities;
 import net.wetnoodle.noodlemancy.registry.NMBlocks;
@@ -26,9 +26,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class PressurizedDropperBlockEntity extends DispenserBlockEntity {
-    public PressurizedDropperBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(NMBlockEntities.PRESSURIZED_DROPPER, blockPos, blockState);
+public class SneezerBlockEntity extends DispenserBlockEntity {
+    public SneezerBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(NMBlockEntities.SNEEZER, blockPos, blockState);
     }
 
     private static final int SUCK_DISTANCE = 3;
@@ -36,16 +36,16 @@ public class PressurizedDropperBlockEntity extends DispenserBlockEntity {
 
     @Override
     public @NotNull Component getDefaultName() {
-        return Component.translatable("container.noodlemancy.pressurized_dropper");
+        return Component.translatable("container.noodlemancy.sneezer");
     }
 
     // Fun Stuff
 
-    public static void tick(Level level, BlockPos pos, BlockState state, PressurizedDropperBlockEntity blockEntity) {
-        if (!state.is(NMBlocks.PRESSURIZED_DROPPER) || !state.getValue(PressurizedDropper.CHARGE_STATE).equals(ChargingBlockState.CHARGING))
+    public static void tick(Level level, BlockPos pos, BlockState state, SneezerBlockEntity blockEntity) {
+        if (!state.is(NMBlocks.SNEEZER) || !state.getValue(SneezerBlock.CHARGE_STATE).equals(ChargingBlockState.CHARGING))
             return;
 //        System.out.println("Charging!");
-        blockEntity.vacuum(level, pos, state, state.getValue(PressurizedDropper.ORIENTATION).front());
+        blockEntity.vacuum(level, pos, state, state.getValue(SneezerBlock.ORIENTATION).front());
     }
 
     private void vacuum(Level level, BlockPos pos, BlockState state, Direction facing) {
