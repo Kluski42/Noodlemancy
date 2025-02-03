@@ -47,6 +47,7 @@ public class SneezerBlock extends BaseEntityBlock {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     private static final int CHARGING_TIME = 20;
+    private static final int FIRING_DELAY = 4;
 
     public SneezerBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -169,10 +170,10 @@ public class SneezerBlock extends BaseEntityBlock {
         }
         ChargingBlockState chargeState = state.getValue(CHARGE_STATE);
         if (chargeState.equals(UNPOWERED) && receivingPower) {
-            level.scheduleTick(pos, this, CHARGING_TIME);
+//            level.scheduleTick(pos, this, CHARGING_TIME);
             state = state.setValue(CHARGE_STATE, CHARGING);
             stateUpdated = true;
-            blockEntity.updatedTime = level.getGameTime();
+//            blockEntity.updatedTime = level.getGameTime();
         } else if (chargeState.equals(CHARGING) && !receivingPower) {
             state = state.setValue(CHARGE_STATE, UNPOWERED);
             stateUpdated = true;
@@ -192,15 +193,16 @@ public class SneezerBlock extends BaseEntityBlock {
         boolean receivingPower = state.getValue(POWERED);
         ChargingBlockState chargeState = state.getValue(CHARGE_STATE);
         if (!(level.getBlockEntity(pos) instanceof SneezerBlockEntity blockEntity)) return;
-        if (chargeState.equals(CHARGING) && receivingPower) {
-            int timeDif = (int) (level.getGameTime() - blockEntity.updatedTime);
-            if (timeDif >= CHARGING_TIME) {
-                level.setBlock(pos, state.setValue(CHARGE_STATE, HOLDING), Block.UPDATE_CLIENTS);
-                level.scheduleTick(pos, this, 4);
-            } else {
-                level.scheduleTick(pos, this, timeDif);
-            }
-        } else if (chargeState.equals(HOLDING)) {
+//        if (chargeState.equals(CHARGING) && receivingPower) {
+////            int timeDif = (int) (level.getGameTime() - blockEntity.updatedTime);
+////            if (blockEntity.ticks >= CHARGING_TIME) {
+//                level.setBlock(pos, state.setValue(CHARGE_STATE, HOLDING), Block.UPDATE_CLIENTS);
+//                level.scheduleTick(pos, this, 4);
+////            } else {
+////                level.scheduleTick(pos, this, CHARGING_TIME - blockEntity.ticks);
+////            }
+//        } else
+        if (chargeState.equals(HOLDING)) {
             level.setBlock(pos, state.setValue(CHARGE_STATE, TRIGGERED), Block.UPDATE_CLIENTS);
             dispense(level, state, pos);
             if (!receivingPower) level.scheduleTick(pos, this, 4);
