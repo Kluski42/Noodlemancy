@@ -4,20 +4,11 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
-import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.data.models.blockstates.Variant;
-import net.minecraft.client.data.models.blockstates.VariantProperties;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.wetnoodle.noodlemancy.block.CreakingEyeBlock;
-import net.wetnoodle.noodlemancy.block.SneezerBlock;
-import net.wetnoodle.noodlemancy.block.enums.ChargingBlockState;
 import net.wetnoodle.noodlemancy.registry.NMBlocks;
 
 public final class NMModelProvider extends FabricModelProvider {
@@ -27,8 +18,8 @@ public final class NMModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockModelGenerator) {
-        registerCreakingEye(blockModelGenerator, NMBlocks.CREAKING_EYE);
-        registerSneezer(blockModelGenerator, NMBlocks.SNEEZER, Blocks.BLAST_FURNACE);
+//        registerCreakingEye(blockModelGenerator, NMBlocks.CREAKING_EYE);
+//        registerSneezer(blockModelGenerator, NMBlocks.SNEEZER, Blocks.BLAST_FURNACE);
     }
 
     @Override
@@ -49,16 +40,15 @@ public final class NMModelProvider extends FabricModelProvider {
         TextureMapping mapItem = createCreakingEyeOffMapping(block).put(NMTextureSlots.FRONT_EMISSIVE, TextureMapping.getBlockTexture(block, "_emissive_3"));
         ResourceLocation idItem = NMModelTemplates.CREAKING_EYE_TEMPLATE.createWithSuffix(block, "_item", mapItem, blockStateModelGenerator.modelOutput);
         blockStateModelGenerator.registerSimpleItemModel(NMBlocks.CREAKING_EYE, idItem);
-
-        blockStateModelGenerator.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block)
-                .with(BlockModelGenerators.createFacingDispatch())
-                .with(PropertyDispatch.property(CreakingEyeBlock.EYES)
-                        .select(0, Variant.variant().with(VariantProperties.MODEL, id0))
-                        .select(1, Variant.variant().with(VariantProperties.MODEL, id1))
-                        .select(2, Variant.variant().with(VariantProperties.MODEL, id2))
-                        .select(3, Variant.variant().with(VariantProperties.MODEL, id3))
-                )
-        );
+//        blockStateModelGenerator.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block)
+//                .with(BlockModelGenerators.createFacingDispatch())
+//                .with(PropertyDispatch.property(CreakingEyeBlock.EYES)
+//                        .select(0, Variant.variant().with(VariantProperties.MODEL, id0))
+//                        .select(1, Variant.variant().with(VariantProperties.MODEL, id1))
+//                        .select(2, Variant.variant().with(VariantProperties.MODEL, id2))
+//                        .select(3, Variant.variant().with(VariantProperties.MODEL, id3))
+//                )
+//        );
     }
 
     // Make face texture change
@@ -72,16 +62,16 @@ public final class NMModelProvider extends FabricModelProvider {
         TextureMapping triggeredMap = createSneezerMapping(block, stolenBlock, "_triggered");
         ResourceLocation triggeredId = ModelTemplates.CUBE_ORIENTABLE.createWithSuffix(block, "_triggered", triggeredMap, blockStateModelGenerator.modelOutput);
 
-        blockStateModelGenerator.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block)
-                .with(PropertyDispatch.property(BlockStateProperties.ORIENTATION)
-                        .generate(frontAndTop -> blockStateModelGenerator.applyRotation(frontAndTop, Variant.variant())))
-                .with(PropertyDispatch.property(SneezerBlock.CHARGE_STATE)
-                        .select(ChargingBlockState.UNPOWERED, Variant.variant().with(VariantProperties.MODEL, unpoweredId))
-                        .select(ChargingBlockState.CHARGING, Variant.variant().with(VariantProperties.MODEL, chargingId))
-                        .select(ChargingBlockState.HOLDING, Variant.variant().with(VariantProperties.MODEL, holdingId))
-                        .select(ChargingBlockState.TRIGGERED, Variant.variant().with(VariantProperties.MODEL, triggeredId))
-                )
-        );
+//        blockStateModelGenerator.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block)
+//                .with(PropertyDispatch.property(BlockStateProperties.ORIENTATION)
+//                        .generate(frontAndTop -> blockStateModelGenerator.applyRotation(frontAndTop, Variant.variant())))
+//                .with(PropertyDispatch.property(SneezerBlock.CHARGE_STATE)
+//                        .select(ChargingBlockState.UNPOWERED, Variant.variant().with(VariantProperties.MODEL, unpoweredId))
+//                        .select(ChargingBlockState.CHARGING, Variant.variant().with(VariantProperties.MODEL, chargingId))
+//                        .select(ChargingBlockState.HOLDING, Variant.variant().with(VariantProperties.MODEL, holdingId))
+//                        .select(ChargingBlockState.TRIGGERED, Variant.variant().with(VariantProperties.MODEL, triggeredId))
+//                )
+//        );
     }
 
     // Mappings

@@ -108,10 +108,16 @@ public class SneezerBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean bl) {
-        Containers.dropContentsOnDestroy(state, newState, level, pos);
-        super.onRemove(state, level, pos, newState, bl);
+    protected void affectNeighborsAfterRemoval(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, boolean bl) {
+        Containers.updateNeighboursAfterDestroy(blockState, serverLevel, blockPos);
     }
+
+
+//    @Override
+//    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean bl) {
+//        Containers.dropContentsOnDestroy(state, newState, level, pos);
+//        super.onRemove(state, level, pos, newState, bl);
+//    }
 
     @Override
     protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos pos, Player player, BlockHitResult blockHitResult) {

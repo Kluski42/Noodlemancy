@@ -94,15 +94,15 @@ public class CreakingEyeBlock extends BaseEntityBlock {
         level.updateNeighborsAt(blockPos.relative(direction), block);
     }
 
-    @Override
-    protected void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl) {
-        if (!blockState.is(blockState2.getBlock())) {
-            if (!level.isClientSide && (blockState.getValue(POWER) > 0)) {
-                updateNeighbours(level, blockPos, blockState.setValue(POWER, 0));
-            }
-        }
-        super.onRemove(blockState, level, blockPos, blockState2, bl);
-    }
+//    @Override
+//    protected void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl) {
+//        if (!blockState.is(blockState2.getBlock())) {
+//            if (!level.isClientSide && (blockState.getValue(POWER) > 0)) {
+//                updateNeighbours(level, blockPos, blockState.setValue(POWER, 0));
+//            }
+//        }
+//        super.onRemove(blockState, level, blockPos, blockState2, bl);
+//    }
 
     @Override
     protected boolean isSignalSource(BlockState blockState) {
